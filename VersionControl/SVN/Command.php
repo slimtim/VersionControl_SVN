@@ -452,7 +452,8 @@ abstract class VersionControl_SVN_Command
     public function run($args = array(), $switches = array())
     {
         if (!file_exists($this->binaryPath)) {
-            throw new VersionControl_SVN_Exception('Invalid path to svn command: ' . $this->binaryPath);
+            throw new VersionControl_SVN_Exception("Invalid path to svn command: {$this->binaryPath}. " .
+                "You can define it using the binaryPath option in the constructor.");
         }
 
         if (sizeof($switches) > 0) {
