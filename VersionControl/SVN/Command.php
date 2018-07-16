@@ -51,7 +51,6 @@
  */
 
 require_once 'VersionControl/SVN/Exception.php';
-require_once 'System.php';
 
 /**
  * Ground class for a SVN command.
@@ -453,8 +452,7 @@ abstract class VersionControl_SVN_Command
     public function run($args = array(), $switches = array())
     {
         if (!file_exists($this->binaryPath)) {
-            $system = new System();
-            $this->binaryPath = $system->which('svn');
+            throw new VersionControl_SVN_Exception('Invalid path to svn command: ' . $this->binaryPath);
         }
 
         if (sizeof($switches) > 0) {
